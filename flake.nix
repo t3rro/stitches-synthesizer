@@ -1,8 +1,8 @@
 {
   description = "stitches synthesizer";
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs";
-  inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.ruby-flake-utils.url = "github:t3rro/ruby-flake-utils";
+  inputs.nixpkgs.url = github:NixOS/nixpkgs;
+  inputs.flake-utils.url = github:numtide/flake-utils;
+  inputs.ruby-flake-utils.url = github:t3rro/ruby-flake-utils;
 
   outputs = { self, nixpkgs, flake-utils, ruby-flake-utils }:
     let
