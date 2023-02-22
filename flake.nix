@@ -2,7 +2,7 @@
   description = "stitches synthesizer";
   inputs.nixpkgs.url = "github:NixOS/nixpkgs";
   inputs.flake-utils.url = "github:numtide/flake-utils";
-  inputs.ruby-flake-utils.url = "github:t3rro/stitches-synthesizer";
+  inputs.ruby-flake-utils.url = "github:t3rro/ruby-flake-utils";
 
   outputs = { self, nixpkgs, flake-utils, ruby-flake-utils }:
     flake-utils.lib.eachDefaultSystem (
@@ -10,7 +10,7 @@
       let
         name = "stitches-synthesizer";
         system = "x86_64-linux";
-        gems = pkgs.bundlerEnv common.bundlerConfig;
+        gems = pkgs.bundlerEnv configurations.bundlerConfig;
         pkgs = import nixpkgs { inherit system; };
         gemDefaults = ruby-flake-utils.lib.mkGemDefaults { inherit name pkgs; };
         configurations = gemDefaults.configurations;
