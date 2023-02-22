@@ -4,7 +4,7 @@
   inputs.flake-utils.url = github:numtide/flake-utils;
   inputs.ruby-flake-utils.url = github:t3rro/ruby-flake-utils;
 
-  outputs = { self, nixpkgs, flake-utils, ruby-flake-utils }:
+  outputs = { self, nixpkgs, flake-utils, ruby-flake-utils }@attrs:
     let
       systems = flake-utils.lib.eachDefaultSystem
         (
@@ -18,23 +18,23 @@
               ./Gemfile
               ./gemset.nix;
 
-            inherit (gemSystem) pkgs configurations;
-
-            thisSystem =
-              rec {
-                packages = flake-utils.lib.flattenTree { stitches = pkgs.stdenv.mkDerivation configurations.derivationConfig; };
-                defaultPackage = packages.stitches;
-                devShell =
-                  let
-                    derivationConfig = configurations.derivationConfig // {
-                      shellHook = "zsh";
-                      buildInputs = configurations.derivationConfig.buildInputs ++ [ pkgs.zsh ];
-                    };
-                  in
-                  pkgs.stdenv.mkDerivation derivationConfig;
-              };
+            # inherit (gemSystem) pkgs configurations;
+            #
+            # thisSystem =
+            #   rec {
+            #     packages = flake-utils.lib.flattenTree { stitches = pkgs.stdenv.mkDerivation configurations.derivationConfig; };
+            #     defaultPackage = packages.stitches;
+            #     devShell =
+            #       let
+            #         derivationConfig = configurations.derivationConfig // {
+            #           shellHook = "zsh";
+            #           buildInputs = configurations.derivationConfig.buildInputs ++ [ pkgs.zsh ];
+            #         };
+            #       in
+            #       pkgs.stdenv.mkDerivation derivationConfig;
+            #   };
           in
-          thisSystem
+          gemSystem
         );
     in
     systems;
