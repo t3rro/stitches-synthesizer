@@ -22,9 +22,7 @@
 
             thisSystem =
               rec {
-                packages = flake-utils.lib.flattenTree {
-                  stitches = pkgs.callPackage ./package.nix { inherit pkgs; };
-                };
+                packages = flake-utils.lib.flattenTree { stitches = pkgs.stdenv.mkDerivation configurations.derivationConfig; };
                 defaultPackage = packages.stitches;
                 devShell =
                   let
