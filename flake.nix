@@ -12,8 +12,12 @@
         system = "x86_64-linux";
         gems = pkgs.bundlerEnv configurations.bundlerConfig;
         pkgs = import nixpkgs { inherit system; };
-        gemDefaults = ruby-flake-utils.lib.mkGemDefaults { inherit name pkgs; };
-        configurations = gemDefaults.configurations;
+        rflutils = ruby-flake-utils.lib;
+        funcs = rflutils.mkFuncs pkgs bins;
+        scripts = rflutils.mkScripts funcs;
+        envs = rflutils.mkEnvs pkgs configurations;
+        bins = rflutils.mkBins envs pkgs;
+        configurations = rflutils.mkConfigurations { inherit name pkgs envs scripts bins; };
       in
       rec {
         packages = flake-utils.lib.flattenTree {
