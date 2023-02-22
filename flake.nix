@@ -17,7 +17,11 @@
         scripts = rflutils.mkScripts funcs;
         envs = rflutils.mkEnvs pkgs configurations;
         bins = rflutils.mkBins envs pkgs;
-        configurations = rflutils.mkConfigurations { inherit name pkgs envs scripts bins; };
+        configurations = rflutils.mkConfigurations name pkgs envs scripts bins {
+          lockfile = ./Gemfile.lock;
+          gemfile = ./Gemfile;
+          gemset = ./gemset.nix;
+        };
       in
       rec {
         packages = flake-utils.lib.flattenTree {
