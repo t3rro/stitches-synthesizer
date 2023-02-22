@@ -10,7 +10,13 @@
         (
           system:
           let
-            gemSystem = ruby-flake-utils.lib.mkGemSystem system "stitches-synthesizer" nixpkgs;
+            gemSystem = ruby-flake-utils.lib.mkGemSystem
+              system
+              "stitches-synthesizer"
+              nixpkgs
+              ./Gemfile.lock
+              ./Gemfile
+              ./gemset.nix;
 
             inherit (gemSystem) pkgs configurations;
 
