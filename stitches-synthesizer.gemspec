@@ -7,11 +7,11 @@ require_relative %(./lib/stitches/synthesizer/version)
 Gem::Specification.new do |spec|
   spec.name                  = %(stitches-synthesizer)
   spec.version               = Stitches::Synthesizer::VERSION
-  spec.authors               = [%(Luis De Siqueira)]
+  spec.authors               = [%(t3rro)]
   spec.email                 = [%()]
   spec.description           = %(create resource manifests)
   spec.summary               = %(create resource manifests)
-  spec.homepage              = %(https://github.com/luisfelipemourapereira/#{spec.name})
+  spec.homepage              = %(https://github.com/t3rro/#{spec.name})
   spec.license               = %(IPA)
   spec.files                 = `git ls-files`.split($OUTPUT_RECORD_SEPARATOR)
   spec.require_paths         = [%(lib)]
